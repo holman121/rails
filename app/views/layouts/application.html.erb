@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsProject</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav class="navbar sticky-top bg-light">
+    <ul class="navbar-nav my-3 mx-auto flex-row">
+      <li class="nav-item mx-4 text-info"><%= link_to "Home", "/" %></li>
+      <li class="nav-item mx-4"><%= link_to "About", abouts_path %></li>
+      <li class="nav-item mx-4"><%= link_to "Customer", customers_path %></li>
+      <li class="nav-item mx-4"><%= link_to "Order", orders_path %></li>
+      <li class="nav-item mx-4"><%= link_to "Product", products_path %></li>
+      <li class="nav-item mx-4"><%= link_to "Company", companies_path %></li>
+    </ul>
+  </nav>
+
+    <%= yield %>
+  </body>
+</html>

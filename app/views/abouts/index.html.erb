@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row mx-5">
+<h3 class="col-12 text-center my-5">About</h3>
+
+  <div class="col-12 text-center lead">
+<p>The data I selected is faker.  The structure of the data will have 4 tables,
+  orders, products, companies, and customers.</p>
+<p>A orders table belongs to customers and will have 3 columns: title, description, customerId, and price.</p>
+<p>A customers table has many orders and will have 6 columns: first name, last name,
+  address, country, city, and post code.</p>
+<p>A products table belongs to companies and will have 4 columns: name, companyId, stock_quantity, and price.</p>
+<p>A companies table has many products and will have 4 columns: name, address, email, and phone.</p>
+  </div>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @abouts.each do |about| %>
+      <tr>
+        <td><%= link_to 'Show', about %></td>
+        <td><%= link_to 'Edit', edit_about_path(about) %></td>
+        <td><%= link_to 'Destroy', about, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
