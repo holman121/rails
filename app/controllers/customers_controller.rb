@@ -4,7 +4,12 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = if params[:term]
+                  Customer.where('first_name LIKE ? OR last_name LIKE ?',
+                                 "%#{params[:term]}%", "%#{params[:term]}%")
+                else
+                  Customer.all
+                end
   end
 
   # GET /customers/1
@@ -69,6 +74,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :address, :post_code, :city, :country)
+      params.require(:customer).permit(:first_name, :last_name, :address, :post_code, :city, :country, :term)
     end
 end

@@ -4,7 +4,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = if params[:term]
+                   Order.where('title LIKE ?', "%#{params[:term]}%")
+                 else
+                   Order.all
+                 end
   end
 
   # GET /orders/1
@@ -69,6 +73,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:title, :description, :price, :quantity)
+      params.require(:order).permit(:title, :description, :price, :quantity, :term)
     end
 end

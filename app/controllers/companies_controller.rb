@@ -4,7 +4,11 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = if params[:term]
+               Company.where('name LIKE ?', "%#{params[:term]}%")
+             else
+               Company.all
+             end
   end
 
   # GET /companies/1
@@ -69,6 +73,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :address, :email, :phone)
+      params.require(:company).permit(:name, :address, :email, :phone, :term)
     end
 end
