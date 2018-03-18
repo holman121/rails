@@ -6,10 +6,10 @@ class CustomersController < ApplicationController
   def index
     @customers = if params[:term]
                   Customer.where('first_name LIKE ? OR last_name LIKE ?',
-                                 "%#{params[:term]}%", "%#{params[:term]}%")
+                                 "%#{params[:term]}%", "%#{params[:term]}%").page params[:page]
                 else
-                  Customer.all
-                end
+                  Customer.order('first_name').page params[:page]
+                 end
   end
 
   # GET /customers/1
